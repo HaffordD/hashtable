@@ -1,3 +1,6 @@
+#Drew Hafford
+#11/20
+#Got help from Caramon
 import csv
  
 
@@ -16,23 +19,26 @@ class DataItem:
 class hashTable:
     def __init__(self,size):
         self.hashTable = [0]*size
-
+        self.capacity = size
+        self.curSize = 0
 
     def addByQuote(self, data):
         index = self.hashing_it(data[8])
-        if self.hashTable[index] != None: #collision
-            pass
-        else:
-            self.hashTable[index] = data
+        while self.hashTable[index] != None: #collision
+            index += 1
+            if index > self.capacity:
+                index = 0
+        self.hashTable[index] = data
         return
 
 
     def addByName(self,data):
         index = self.hashing_it(data[0])
-        if self.hashTable[index] != None: #collision
-            pass
-        else:
-            self.hashTable[index] = data
+        while self.hashTable[index] != None: #collision
+            index += 1
+            if index > self.capacity:
+                index = 0
+        self.hashTable[index] = data
         return
 
 
