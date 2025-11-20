@@ -19,12 +19,14 @@ class hashTable:
 
 
     def addByQuote(self, data):
-        
-        pass
+        index = self.hashing_it(data[8])
+        self.hashTable[index] = data
+        return
 
     def addByName(self,data):
-
-        pass
+        index = self.hashing_it(data[0])
+        self.hashTable[index] = data
+        return
 
     def hashing_it(self,inputStr):
         weirdNums = 0
@@ -33,14 +35,19 @@ class hashTable:
         #time for the fun number stuff
         return(weirdNums%23)
 
-       
-size = 15000
-file = "MOCK_DATA.csv"
-with open(file, 'r', newline = '', encoding="utf8") as csvfille:
-    reader = csv.reader(csvfille)
-    for row in reader:
-        print(row)
-        counter+=1
+def main():    
+    size = 15000
+    file = "MOCK_DATA.csv"
+    quoteHash = hashTable(size)
+    nameHash = hashTable(size)
+    with open(file, 'r', newline = '', encoding="utf8") as csvfille:
+        reader = csv.reader(csvfille)
+        for row in reader:
+            print(row)
+            counter+=1
         
 
-print(counter)
+    print(counter)
+
+if __name__ == "__main__":
+    main()
