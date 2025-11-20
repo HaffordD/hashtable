@@ -20,13 +20,21 @@ class hashTable:
 
     def addByQuote(self, data):
         index = self.hashing_it(data[8])
-        self.hashTable[index] = data
+        if self.hashTable[index] != None: #collision
+            pass
+        else:
+            self.hashTable[index] = data
         return
+
 
     def addByName(self,data):
         index = self.hashing_it(data[0])
-        self.hashTable[index] = data
+        if self.hashTable[index] != None: #collision
+            pass
+        else:
+            self.hashTable[index] = data
         return
+
 
     def hashing_it(self,inputStr):
         weirdNums = 0
