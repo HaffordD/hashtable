@@ -26,24 +26,25 @@ class hashTable:
 
     def addByQuote(self, data):
         index = self.hashing_it(data[8])
-        if self.hashTable[index] != None: #collision
-            self.next = data
+        while self.hashTable[index] != None: #collision
+            index += 1
+            if index > self.capacity:
+                index = 0
             self.collisions += 1
-        else:
-            self.hashTable[index] = Node(data)
-            self.curSize += 1
+        self.hashTable[index] = data
+        self.curSize += 1
         return
 
 
     def addByName(self,data):
         index = self.hashing_it(data[0])
-        if self.hashTable[index] != None: #collision
-            self.next = data
+        while self.hashTable[index] != None: #collision
+            index += 1
+            if index >= self.capacity:
+                index = 0
             self.collisions += 1
-
-        else:
-            self.hashTable[index] = Node(data)
-            self.curSize += 1
+        self.hashTable[index] = data
+        self.curSize += 1
         return
 
 
@@ -52,7 +53,7 @@ class hashTable:
         for i in inputStr:
             weirdNums += ord(i)
         #time for the fun number stuff
-        return(weirdNums%4673)
+        return(weirdNums%37)
 
 class Node:
   def __init__(self, data):
