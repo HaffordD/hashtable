@@ -26,7 +26,6 @@ class hashTable:
 
     def addByQuote(self, data):
         index = self.hashing_it(data[8])
-        print(data[8])
         while self.hashTable[index] != None: #collision
             index += 1
             if index > self.capacity:
