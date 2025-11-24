@@ -1,6 +1,6 @@
 #Drew Hafford
 #11/20
-#Got help from Caramon
+#Got help from Caramon and Jack
 import csv
 import time
  
@@ -52,7 +52,7 @@ class hashTable:
         for i in inputStr:
             weirdNums += ord(i)
         #time for the fun number stuff
-        return(weirdNums%37)
+        return(weirdNums%4673)
 
 class Node:
   def __init__(self, data):
