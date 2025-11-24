@@ -26,25 +26,24 @@ class hashTable:
 
     def addByQuote(self, data):
         index = self.hashing_it(data[8])
-        while self.hashTable[index] != None: #collision
-            index += 1
-            if index > self.capacity:
-                index = 0
+        if self.hashTable[index] != None: #collision
+            self.next = data
             self.collisions += 1
-        self.hashTable[index] = data
-        self.curSize += 1
+        else:
+            self.hashTable[index] = Node(data)
+            self.curSize += 1
         return
 
 
     def addByName(self,data):
         index = self.hashing_it(data[0])
-        while self.hashTable[index] != None: #collision
-            index += 1
-            if index >= self.capacity:
-                index = 0
+        if self.hashTable[index] != None: #collision
+            self.next = data
             self.collisions += 1
-        self.hashTable[index] = data
-        self.curSize += 1
+
+        else:
+            self.hashTable[index] = Node(data)
+            self.curSize += 1
         return
 
 
@@ -53,7 +52,12 @@ class hashTable:
         for i in inputStr:
             weirdNums += ord(i)
         #time for the fun number stuff
-        return(weirdNums%3917)
+        return(weirdNums%37)
+
+class Node:
+  def __init__(self, data):
+    self.data = data
+    self.next = None
 
 def main():    
     size = 15000
@@ -87,9 +91,9 @@ def main():
                 quoteHash.addByQuote(row)
     end = time.time()
 
-    print(f"There were {nameHash.collisions} collisions")#number of collisions
+    print(f"There were {quoteHash.collisions} collisions")#number of collisions
     print(f"It took {end-start:0.2f} seconds to sort by quote")#time it took
-    print(f"There were {size-nameHash.curSize} wasted buckets")#wasted buckets
+    print(f"There were {size-quoteHash.curSize} wasted buckets")#wasted buckets
 
 if __name__ == "__main__":
     main()
