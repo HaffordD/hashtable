@@ -53,7 +53,7 @@ class hashTable:
         for i in inputStr:
             weirdNums += ord(i)
         #time for the fun number stuff
-        return(weirdNums%37)
+        return(weirdNums%3917)
 
 class Node:
   def __init__(self, data):
